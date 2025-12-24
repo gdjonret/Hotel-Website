@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <%- include("../partials/head") %>
+  <link rel="stylesheet" href="/css/contact.css">
+  <title data-i18n="contact.pageTitle">Contact - Hôtel Le Process</title>
+</head>
+<body>
+  <%- include("../partials/navbar.ejs") %>
+
+  <main>
+    <% if (typeof error !== 'undefined' && error) { %>
+      <section class="contact-alert" role="alert">
+        <div class="container">
+          <div class="alert error">
+            <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+            <p><%= error %></p>
+          </div>
+        </div>
+      </section>
+    <% } %>
+
+    <% if (typeof submitted !== 'undefined' && submitted) { %>
+      <section class="contact-alert" role="status">
+        <div class="container">
+          <div class="alert success">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <p data-i18n="contact.successMessage">Thank you! Our team will get back to you shortly.</p>
+          </div>
+        </div>
+      </section>
+    <% } %>
+
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-header">
+          <h1 class="header-title">Entrons en contact</h1>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-card-header">
+              <h2 data-i18n="contact.formTitle">Envoyez-nous un message</h2>
+              <p data-i18n="contact.formSubtitle">Nous coordonnons vos réservations, transferts aéroport et demandes sur-mesure dans les meilleurs délais.</p>
+
+              <ul class="contact-info-list">
+                <li>
+                  <i class="fa-solid fa-phone"></i>
+                  <div>
+                    <span class="info-label">Appeler</span>
+                    <a href="tel:+23568889333" class="info-value">+235 68 88 93 33</a>
+                  </div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-envelope"></i>
+                  <div>
+                    <span class="info-label">Écrire</span>
+                    <a href="mailto:leprocess@intnet.td" class="info-value">leprocess@intnet.td</a>
+                  </div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-map-pin"></i>
+                  <div>
+                    <span class="info-label">Nous rendre visite</span>
+                    <span class="info-value">Quartier Dembé · BP 4553, N'Djamena</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <form action="/contact" method="POST" class="contact-form" id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" data-i18n="contact.form.nameLabel">Votre nom</label>
+                  <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                  <label for="email" data-i18n="contact.form.emailLabel">Email</label>
+                  <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Objet</label>
+                <select id="subject" name="subject" required>
+                  <option value="" disabled selected>Choisissez un objet</option>
+                  <option value="Réserver une chambre">Réserver une chambre</option>
+                  <option value="Réserver une table au restaurant">Réserver une table au restaurant</option>
+                  <option value="Demande de groupe ou d’évènement">Demande de groupe ou d’évènement</option>
+                  <option value="Commentaires / suggestions">Commentaires / suggestions</option>
+                  <option value="Question ou information générale">Question ou information générale</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message" data-i18n="contact.form.messageLabel">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Votre message..." required minlength="10" maxlength="5000"></textarea>
+                <small class="form-text">Minimum 10 caractères, maximum 5000 caractères</small>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span data-i18n="contact.form.submit">Envoyer le message</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+
+          <div class="map-card">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.0234567890123!2d15.0953248!3d12.1063747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x11196166a462d617%3A0x5ff4119767a17a6d!2sHotel%20Le%20Process!5e0!3m2!1sen!2std!4v1700000000000"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Map showing Hôtel Le Process located in N'Djamena"></iframe>
+            <div class="map-info">
+              <span class="map-badge">Localisation de l'hôtel</span>
+              <p class="map-address">Quartier Dembé · BP 4553, N'Djamena</p>
+              <a
+                href="https://www.google.com/maps?ll=12.106375,15.095325&z=17&t=m&hl=en-US&gl=US&mapclient=embed&cid=6914170669896923757"
+                target="_blank"
+                rel="noopener"
+                class="map-link">Voir l'itinéraire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include("../partials/footer.ejs") %>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
+  <script src="/js/i18n-client.js"></script>
+  <script>
+    (function () {
+      const alertEl = document.querySelector('.contact-alert .alert');
+      if (!alertEl) return;
+      setTimeout(() => {
+        alertEl.classList.add('fade-out');
+        alertEl.addEventListener('animationend', () => {
+          const alertWrapper = alertEl.closest('.contact-alert');
+          if (alertWrapper) alertWrapper.remove();
+        }, { once: true });
+      }, 5000);
+    })();
+
+    // Contact form validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value.trim();
+      
+      // Clear previous errors
+      const existingError = document.querySelector('.form-error');
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      // Validation
+      if (name.length === 0) {
+        showError('Le nom est requis');
+        e.preventDefault();
+        return false;
+      }
+      
+      if (name.length > 255) {
+        showError('Le nom ne doit pas dépasser 255 caractères');
+        e.preventDefault();
+        return false;
+      }
+      
+      if (email.length === 0) {
+        showError('L\'email est requis');
+        e.preventDefault();
+        return false;
+      }
+      
+      if (!isValidEmail(email)) {
+        showError('L\'email n\'est pas valide');
+        e.preventDefault();
+        return false;
+      }
+      
+      if (subject === '') {
+        showError('Veuillez sélectionner un objet');
+        e.preventDefault();
+        return false;
+      }
+      
+      if (message.length < 10) {
+        showError('Le message doit contenir au moins 10 caractères');
+        e.preventDefault();
+        return false;
+      }
+      
+      if (message.length > 5000) {
+        showError('Le message ne doit pas dépasser 5000 caractères');
+        e.preventDefault();
+        return false;
+      }
+      
+      return true;
+    });
+    
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+    
+    function showError(message) {
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'form-error';
+      errorDiv.style.color = '#dc3545';
+      errorDiv.style.marginTop = '10px';
+      errorDiv.style.fontSize = '14px';
+      errorDiv.style.padding = '10px';
+      errorDiv.style.backgroundColor = '#f8d7da';
+      errorDiv.style.border = '1px solid #f5c6cb';
+      errorDiv.style.borderRadius = '4px';
+      errorDiv.textContent = message;
+      
+      const form = document.getElementById('contactForm');
+      form.insertBefore(errorDiv, form.firstChild);
+      
+      // Scroll to error
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>

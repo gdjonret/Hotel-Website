@@ -1,0 +1,144 @@
+/* Hotel Checkout Styles - Matching Confirmation Page */
+.hotel-checkout {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Georgia', serif;
+}
+
+.checkout-header {
+    background: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.checkout-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 0 0 10px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.checkout-header p {
+    color: #666;
+    margin: 0;
+    font-size: 16px;
+}
+
+.checkout-body {
+    padding: 30px;
+}
+
+.checkout-section {
+    margin-bottom: 30px;
+}
+
+.checkout-section:last-child {
+    margin-bottom: 0;
+}
+
+.checkout-section h2 {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-weight: normal;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: flex-start;
+}
+
+.detail-label {
+    width: 140px;
+    color: #666;
+    font-size: 14px;
+    padding-right: 15px;
+}
+
+.detail-value {
+    flex: 1;
+    color: #333;
+    font-size: 14px;
+}
+
+.payment-info {
+    background: #f8f8f8;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.payment-info p {
+    margin: 0 0 10px;
+    color: #666;
+}
+
+.payment-info ul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 10px 0 0;
+}
+
+.payment-info ul li {
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.payment-info ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #333;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+.button-group button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 0 5px;
+}
+
+.button-group button:hover {
+    background: #555;
+}
+
+.button-group button i {
+    margin-right: 8px;
+}
+
+/* Print styles */
+@media print {
+    .navbar, 
+    .room-image, 
+    .steps, 
+    .progress-bar,
+    .col-md-4,
+    .booking-form,
+    .button-group,
+    footer,
+    header,
+    nav {
+        display: none !important;
+    }
+}

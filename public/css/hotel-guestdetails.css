@@ -1,0 +1,165 @@
+/* Hotel Guest Details Styles - Matching Confirmation Page */
+.hotel-guestdetails {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Georgia', serif;
+}
+
+.guestdetails-header {
+    background: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.guestdetails-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 0 0 10px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.guestdetails-header p {
+    color: #666;
+    margin: 0;
+    font-size: 16px;
+}
+
+.guestdetails-body {
+    padding: 30px;
+}
+
+.guestdetails-section {
+    margin-bottom: 30px;
+}
+
+.guestdetails-section:last-child {
+    margin-bottom: 0;
+}
+
+.guestdetails-section h2 {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-weight: normal;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.form-row .col-md-6 {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    font-family: 'Georgia', serif;
+}
+
+.form-control:focus {
+    border-color: #999;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.required-field::after {
+    content: '*';
+    color: #d9534f;
+    margin-left: 4px;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+.button-group button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 0 5px;
+}
+
+.button-group button.btn-secondary {
+    background: #666;
+}
+
+.button-group button:hover {
+    background: #555;
+}
+
+.button-group button.btn-secondary:hover {
+    background: #777;
+}
+
+.button-group button i {
+    margin-right: 8px;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 767px) {
+    .form-row {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .form-row .col-md-6 {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar, 
+    .room-image, 
+    .steps, 
+    .progress-bar,
+    .col-md-4,
+    .booking-form,
+    .button-group,
+    footer,
+    header,
+    nav {
+        display: none !important;
+    }
+}

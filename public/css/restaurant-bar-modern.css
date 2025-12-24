@@ -1,0 +1,939 @@
+/* ========================================
+   MODERN RESTAURANT & BAR DESIGN
+   Contemporary luxury with clean aesthetics
+   ======================================== */
+
+:root {
+    /* Color Palette - Classy & Demure */
+    --rb-primary: #1a1a1a;
+    --rb-primary-light: #3a3a3a;
+    --rb-accent: #c9a961;
+    --rb-accent-light: #e8d5b7;
+    --rb-dark: #0a0a0a;
+    --rb-charcoal: #2c2c2c;
+    --rb-slate: #4a4a4a;
+    --rb-cream: #faf8f5;
+    --rb-beige: #f5f2ed;
+    
+    /* Typography */
+    --rb-font-heading: 'Playfair Display', 'Georgia', serif;
+    --rb-font-body: 'Inter', 'Poppins', sans-serif;
+    
+    /* Spacing */
+    --rb-section-padding: clamp(60px, 10vw, 100px);
+    --rb-card-radius: 16px;
+    
+    /* Effects */
+    --rb-shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.06);
+    --rb-shadow-medium: 0 4px 24px rgba(0, 0, 0, 0.08);
+    --rb-shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+
+body {
+    background: var(--rb-cream);
+    color: var(--rb-primary);
+    font-family: var(--rb-font-body);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 40px);
+}
+
+/* ========================================
+   HERO SECTION - Full-screen Impact
+   ======================================== */
+
+.hero-restaurant {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.65) 0%,
+        rgba(10, 10, 10, 0.75) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+    padding: 0 30px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content h1 {
+    font-family: var(--rb-font-heading);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   SECTION STYLING
+   ======================================== */
+
+main {
+    background: var(--rb-cream);
+}
+
+section {
+    padding: var(--rb-section-padding) 0;
+}
+
+.menu-showcase {
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+section:nth-child(even) {
+    background: linear-gradient(180deg, #fafafa 0%, #f8f8f8 100%);
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.section-header h2,
+.intro h2,
+.culinary-experiences h2,
+.menu-header h2,
+.gallery-header h2,
+.reserve-experience h2 {
+    font-family: var(--rb-font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--rb-dark);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.section-header p,
+.intro p,
+.menu-header p,
+.gallery-header p,
+.reserve-experience p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #5a5a5a;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+/* ========================================
+   RESTAURANT OVERVIEW
+   ======================================== */
+
+.restaurant-overview {
+    background: #ffffff;
+}
+
+.restaurant-overview .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.intro-points {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0 0;
+    display: grid;
+    gap: 16px;
+}
+
+.intro-points li {
+    position: relative;
+    padding-left: 36px;
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    line-height: 1.7;
+}
+
+.intro-points li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--rb-primary), var(--rb-primary-light));
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.intro-image {
+    position: relative;
+}
+
+.intro-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: var(--rb-card-radius);
+    box-shadow: var(--rb-shadow-medium);
+    transition: transform 0.4s ease;
+}
+
+.intro-image img:hover {
+    transform: scale(1.02);
+}
+
+/* ========================================
+   CULINARY EXPERIENCES - Card Grid
+   ======================================== */
+
+.culinary-experiences {
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+}
+
+.culinary-experiences h2 {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.experience-card {
+    background: #ffffff;
+    padding: 48px 36px;
+    border-radius: var(--rb-card-radius);
+    box-shadow: var(--rb-shadow-soft);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.experience-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--rb-shadow-medium);
+}
+
+.experience-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, var(--rb-primary), var(--rb-primary-light));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(45, 106, 79, 0.25);
+}
+
+.experience-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--rb-dark);
+    margin-bottom: 16px;
+    font-family: var(--rb-font-body);
+}
+
+.experience-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* ========================================
+   MENU SHOWCASE - Modern Cards
+   ======================================== */
+
+.menu-showcase {
+    background: #ffffff;
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-header h2 {
+    font-family: var(--rb-font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: var(--rb-primary);
+    margin-bottom: 16px;
+    letter-spacing: 0.03em;
+}
+
+.menu-header p {
+    font-size: 1rem;
+    color: var(--rb-slate);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+}
+
+/* Menu Categories Grid */
+.menu-categories {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 48px;
+}
+
+@media (max-width: 992px) {
+    .menu-categories {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+.menu-category {
+    background: var(--rb-beige);
+    border-radius: var(--rb-card-radius);
+    padding: 36px;
+    box-shadow: var(--rb-shadow-soft);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.menu-category:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--rb-shadow-medium);
+    border-color: var(--rb-accent);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.category-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--rb-primary);
+    margin: 0;
+    font-family: var(--rb-font-heading);
+    letter-spacing: 0.04em;
+}
+
+.menu-items {
+    display: grid;
+    gap: 18px;
+}
+
+.menu-items--compact {
+    gap: 14px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0;
+    transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+    padding-left: 4px;
+}
+
+.menu-item:hover .item-name {
+    color: var(--rb-accent);
+}
+
+.item-name {
+    font-size: 0.98rem;
+    color: var(--rb-primary);
+    font-weight: 400;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+    letter-spacing: 0.01em;
+}
+
+.item-dots {
+    flex-grow: 1;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.15) 33%, transparent 33%);
+    background-size: 6px 1px;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    margin: 0 10px;
+    min-width: 40px;
+}
+
+.item-price {
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: var(--rb-accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+}
+
+/* Menu Extras (Desserts & Wines) */
+.menu-extras {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+    margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+    .menu-extras {
+        grid-template-columns: 1fr;
+    }
+}
+
+.extras-card {
+    background: var(--rb-beige);
+    border-radius: var(--rb-card-radius);
+    padding: 32px;
+    box-shadow: var(--rb-shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.extras-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--rb-shadow-medium);
+    border-color: var(--rb-accent);
+}
+
+.extras-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.extras-icon {
+    font-size: 2rem;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.extras-header h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--rb-primary);
+    margin: 0;
+    font-family: var(--rb-font-heading);
+    letter-spacing: 0.04em;
+}
+
+.desserts-note {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: var(--rb-slate);
+    padding: 14px 18px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    border-left: 3px solid var(--rb-accent);
+}
+
+.desserts-price {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--rb-accent);
+    letter-spacing: 0.02em;
+}
+
+.wine-list {
+    display: grid;
+    gap: 12px;
+}
+
+.wine-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.wine-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    transform: translateX(2px);
+}
+
+.wine-name {
+    font-size: 0.98rem;
+    color: var(--rb-primary);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+.wine-price {
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: var(--rb-accent);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+}
+
+/* ========================================
+   RESERVATION FOOTER - Minimal & Classy
+   ======================================== */
+
+.reservation-footer {
+    background: var(--rb-primary);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.reservation-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 28px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.reservation-button {
+    display: inline-block;
+    padding: 14px 42px;
+    background: var(--rb-accent);
+    color: var(--rb-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 4px 16px rgba(201, 169, 97, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.reservation-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(201, 169, 97, 0.4);
+    background: var(--rb-accent-light);
+    color: var(--rb-dark);
+}
+
+/* ========================================
+   AMBIENCE GALLERY - Modern Grid
+   ======================================== */
+
+.ambience-gallery {
+    background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    margin-bottom: 60px;
+}
+
+.gallery-grid figure {
+    margin: 0;
+    border-radius: var(--rb-card-radius);
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: var(--rb-shadow-soft);
+    transition: all 0.3s ease;
+}
+
+.gallery-grid figure:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--rb-shadow-medium);
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-grid figure:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-grid figcaption {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Details Cards */
+.details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.detail-card {
+    background: linear-gradient(135deg, var(--rb-primary), var(--rb-primary-light));
+    padding: 36px 32px;
+    border-radius: var(--rb-card-radius);
+    color: #ffffff;
+    box-shadow: var(--rb-shadow-soft);
+}
+
+.detail-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--rb-accent-light);
+}
+
+.detail-card p {
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+/* ========================================
+   RESERVE EXPERIENCE - CTA Section
+   ======================================== */
+
+.reserve-experience {
+    text-align: center;
+    background: linear-gradient(135deg, var(--rb-dark) 0%, var(--rb-charcoal) 100%);
+    color: #ffffff;
+    padding: 100px 0;
+}
+
+.reserve-experience h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.reserve-experience p {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.reserve-experience .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 48px;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.reserve-experience .cta-button:hover {
+    background: var(--rb-accent);
+    color: var(--rb-dark);
+    border-color: var(--rb-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.3);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 992px) {
+    .menu-categories {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .menu-extras {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --rb-section-padding: clamp(50px, 8vw, 70px);
+    }
+    
+    .hero-restaurant {
+        height: 45vh;
+        min-height: 350px;
+        background-attachment: scroll;
+    }
+    
+    .hero-content {
+        padding: 0 24px;
+    }
+    
+    .hero-content h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: 12px;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.85rem, 2vw, 1rem);
+    }
+    
+    .menu-header {
+        margin-bottom: 48px;
+    }
+    
+    .menu-header h2 {
+        font-size: clamp(1.6rem, 5vw, 2rem);
+    }
+    
+    .menu-header p {
+        font-size: 0.95rem;
+    }
+    
+    .menu-category {
+        padding: 28px 24px;
+    }
+    
+    .category-title {
+        font-size: 1.2rem;
+    }
+    
+    .category-icon {
+        font-size: 1.6rem;
+    }
+    
+    .extras-card {
+        padding: 28px 24px;
+    }
+    
+    .extras-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .extras-icon {
+        font-size: 1.8rem;
+    }
+    
+    .reservation-footer {
+        padding: 40px 0;
+    }
+    
+    .reservation-text {
+        font-size: 0.85rem;
+        margin-bottom: 24px;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .hero-restaurant {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .hero-content h1 {
+        font-size: clamp(1.8rem, 9vw, 2.5rem);
+        letter-spacing: 0.03em;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+    }
+    
+    .menu-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .menu-header p {
+        font-size: 0.9rem;
+    }
+    
+    .menu-category {
+        padding: 24px 20px;
+    }
+    
+    .category-header {
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+    }
+    
+    .category-title {
+        font-size: 1.1rem;
+    }
+    
+    .category-icon {
+        font-size: 1.5rem;
+    }
+    
+    .menu-items {
+        gap: 14px;
+    }
+    
+    .menu-items--compact {
+        gap: 12px;
+    }
+    
+    .menu-item {
+        padding: 8px 0;
+    }
+    
+    .item-name {
+        font-size: 0.92rem;
+    }
+    
+    .item-price {
+        font-size: 0.92rem;
+    }
+    
+    .item-dots {
+        margin: 0 8px;
+        min-width: 30px;
+    }
+    
+    .extras-card {
+        padding: 24px 20px;
+    }
+    
+    .extras-header {
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+    
+    .extras-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .extras-icon {
+        font-size: 1.6rem;
+    }
+    
+    .desserts-note {
+        font-size: 0.9rem;
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .desserts-price {
+        font-size: 0.95rem;
+    }
+    
+    .wine-item {
+        padding: 10px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    
+    .wine-name,
+    .wine-price {
+        font-size: 0.92rem;
+    }
+    
+    .reservation-footer {
+        padding: 36px 0;
+    }
+    
+    .reservation-text {
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    
+    .reservation-button {
+        padding: 12px 36px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ========================================
+   UTILITY ANIMATIONS
+   ======================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+    [data-aos] {
+        transition-property: transform, opacity;
+        transition-duration: 0.6s;
+        transition-timing-function: ease-out;
+    }
+}

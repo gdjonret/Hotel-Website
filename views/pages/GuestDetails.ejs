@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <%- include("../partials/head") %>
+    <!-- Page specific CSS -->
+    <link rel="stylesheet" href="/css/BookNow.css">
+    <link rel="stylesheet" href="/css/GuestDetails.css">
+    <link rel="stylesheet" href="/css/hotel-guestdetails.css">
+    <link rel="stylesheet" href="/css/progress-bar.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <title>Guest Details - Hotel Le Process</title>
+</head>
+<body>
+    <%- include("../partials/navbar.ejs") %>
+    <div class="room-image">
+        <img src="/images/h1.jpg" alt="Standard Room">
+    </div>
+    <div class="main-container">
+        <%- include("../partials/progress-steps.ejs", {currentStep: 2}) %>
+
+        <div class="row">
+            <!-- Left Column: Booking Summary -->
+            <div class="col-md-4">
+                <%- include("../partials/booking-summary.ejs") %>
+            </div>
+
+            <!-- Right Column: Guest Details Form -->
+            <div class="col-md-8">
+                <div class="hotel-guestdetails">
+                    <div class="guestdetails-header">
+                        <h1 data-i18n="guestDetails.title">Guest Information</h1>
+                        <p data-i18n="guestDetails.subtitle">Please provide your details to complete the booking</p>
+                    </div>
+                    
+                    <div class="guestdetails-body">
+                    
+                    <form id="guestDetailsForm">
+                        <!-- Personal Information Section -->
+                        <div class="guestdetails-section">
+                            <h2 data-i18n="guestDetails.personalInfo">Personal Information</h2>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName" class="required-field">
+                                            <i class="fas fa-user"></i> <span data-i18n="guestDetails.firstName">First Name</span>
+                                        </label>
+                                        <input type="text" id="firstName" class="form-control" required data-i18n="[placeholder]guestDetails.firstName" placeholder="Enter your first name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName" class="required-field">
+                                            <i class="fas fa-user"></i> <span data-i18n="guestDetails.lastName">Last Name</span>
+                                        </label>
+                                        <input type="text" id="lastName" class="form-control" required data-i18n="[placeholder]guestDetails.lastName" placeholder="Enter your last name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information Section -->
+                        <div class="guestdetails-section">
+                            <h2 data-i18n="guestDetails.contactInfo">Contact Information</h2>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email" class="required-field">
+                                            <i class="fas fa-envelope"></i> <span data-i18n="guestDetails.email">Email Address</span>
+                                        </label>
+                                        <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone" class="required-field">
+                                            <i class="fas fa-phone"></i> <span data-i18n="guestDetails.phone">Phone Number</span>
+                                        </label>
+                                        <input type="tel" id="phone" class="form-control" required placeholder="+1 (555) 123-4567">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address Information Section -->
+                        <div class="guestdetails-section">
+                            <h2 data-i18n="guestDetails.addressInfo">Address Information</h2>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="country">
+                                            <i class="fas fa-globe"></i> <span data-i18n="guestDetails.country">Country</span>
+                                        </label>
+                                        <select id="country" class="form-control" data-country-select>
+                                            <option value="" selected disabled data-i18n="guestDetails.selectCountry">Select your country</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="city">
+                                            <i class="fas fa-city"></i> <span data-i18n="guestDetails.city">City</span>
+                                        </label>
+                                        <input type="text" id="city" class="form-control" data-i18n="[placeholder]guestDetails.city" placeholder="Enter your city">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="zip">
+                                            <i class="fas fa-map-pin"></i> <span data-i18n="guestDetails.zip">ZIP/Postal Code</span>
+                                        </label>
+                                        <input type="text" id="zip" class="form-control" data-i18n="[placeholder]guestDetails.zip" placeholder="12345">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Special Requests Section -->
+                        <div class="guestdetails-section">
+                            <h2 data-i18n="guestDetails.specialRequests">Special Requests</h2>
+                            <div class="form-group">
+                                <label for="specialRequests">
+                                    <i class="fas fa-comment-alt"></i> <span data-i18n="guestDetails.additionalNotes">Additional Notes</span>
+                                </label>
+                                <textarea id="specialRequests" class="form-control" rows="4" placeholder="Any special requests, dietary requirements, accessibility needs, or preferences? (Optional)"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="button" onclick="goBackToRooms()">
+                                <i class="fas fa-arrow-left"></i> <span data-i18n="guestDetails.back">Back</span>
+                            </button>
+                            <button type="submit">
+                                <span data-i18n="guestDetails.confirm">Confirm</span> <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Utility libraries (load before page scripts) -->
+    <script src="/js/lib/utils.js"></script>
+    <script src="/js/lib/dates.js"></script>
+    <script src="/js/lib/booking.js"></script>
+    <script src="/js/lib/flatpickr-helpers.js"></script>
+    <script>
+        function loadGuestDetails() {
+            try {
+                const raw = localStorage.getItem('guestDetails');
+                return raw ? JSON.parse(raw) : null;
+            } catch (_) {
+                return null;
+            }
+        }
+
+        function saveGuestDetails(details) {
+            try {
+                localStorage.setItem('guestDetails', JSON.stringify(details));
+            } catch (_) {
+                console.error('Failed to save guest details');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            if (window.trackPageView) {
+                window.trackPageView('Guest Details');
+            }
+            if (window.trackBookingStep) {
+                window.trackBookingStep('Guest Details Page');
+            }
+            
+            loadBookingSummary();
+            
+            // Load saved guest details if any
+            const guestDetails = loadGuestDetails();
+            if (guestDetails) {
+                const setInputValue = (id, value) => {
+                    const el = document.getElementById(id);
+                    if (el) el.value = value || '';
+                };
+                
+                setInputValue('firstName', guestDetails.firstName);
+                setInputValue('lastName', guestDetails.lastName);
+                setInputValue('email', guestDetails.email);
+                setInputValue('phone', guestDetails.phone);
+                setInputValue('country', guestDetails.country);
+                setInputValue('city', guestDetails.city);
+                setInputValue('zip', guestDetails.zip);
+                setInputValue('specialRequests', guestDetails.specialRequests);
+            }
+        });
+
+        function validateRequiredFields(form) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                // Remove existing error messages
+                const existingError = field.parentElement.querySelector('.invalid-feedback');
+                if (existingError) {
+                    existingError.remove();
+                }
+                
+                if (!field.value.trim()) {
+                    field.classList.add('is-invalid');
+                    
+                    // Add specific error message
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'invalid-feedback';
+                    errorMsg.style.display = 'block';
+                    
+                    // Get field label for better error message
+                    const label = field.parentElement.querySelector('label')?.textContent?.replace('*', '').trim() || 'This field';
+                    errorMsg.textContent = `${label} is required`;
+                    
+                    field.parentElement.appendChild(errorMsg);
+                    isValid = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            });
+            
+            if (!isValid) {
+                // Scroll to first error
+                const firstError = form.querySelector('.is-invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            
+            return isValid;
+        }
+
+        function goBackToRooms() {
+            window.location.href = '/BookNow';
+        }
+
+        document.getElementById('guestDetailsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateRequiredFields(this)) {
+                return;
+            }
+
+            // Get sanitize function (if available)
+            const sanitize = window.sanitizeInput || ((str) => str);
+
+            const guestDetails = {
+                firstName: sanitize(document.getElementById('firstName').value.trim()),
+                lastName: sanitize(document.getElementById('lastName').value.trim()),
+                email: document.getElementById('email').value.trim().toLowerCase(),
+                phone: sanitize(document.getElementById('phone').value.trim()),
+                country: sanitize(document.getElementById('country').value.trim()),
+                city: sanitize(document.getElementById('city').value.trim()),
+                zip: sanitize(document.getElementById('zip').value.trim()),
+                specialRequests: sanitize(document.getElementById('specialRequests').value.trim())
+            };
+
+            // Additional validation
+            if (window.isValidEmail && !window.isValidEmail(guestDetails.email)) {
+                alert('Please enter a valid email address');
+                document.getElementById('email').focus();
+                return;
+            }
+
+            if (window.isValidPhone && !window.isValidPhone(guestDetails.phone)) {
+                alert('Please enter a valid phone number');
+                document.getElementById('phone').focus();
+                return;
+            }
+
+            saveGuestDetails(guestDetails);
+            
+            // Track guest details completion
+            if (window.trackBookingStep) {
+                window.trackBookingStep('Guest Details Completed');
+            }
+            
+            window.location.href = '/Checkout';
+        });
+    </script>
+    
+    <!-- i18next for translations -->
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
+    <script src="/js/i18n-client.js"></script>
+</body>
+</html>

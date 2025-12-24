@@ -1,0 +1,603 @@
+/* Base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for the first navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1001; /* Higher than second navbar */
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.contact-info {
+    font-size: 14px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.social-icons a:hover {
+    color: #aaa;
+}
+
+.social-icons .airbnb-icon {
+    font-size: 20px;
+}
+
+/* Styles for the second navbar */
+.navbar-custom {
+    background-color: #fff;
+    color: #333;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+    margin: 0;
+    border-top: 0;
+}
+
+.navbar-custom .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.hotel-logo {
+    font-family: var(--font-secondary);
+    font-size: 36px;
+    color: var(--primary);
+    white-space: nowrap;
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: auto;
+    transition: color var(--transition-base);
+}
+
+.hotel-logo:hover {
+    color: var(--primary-dark);
+}
+
+.navbar-custom .nav-link {
+    color: var(--text-primary);
+    padding: 8px 15px;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-custom .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: calc(100% - 20px);
+    max-width: 60px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 999px;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-base);
+}
+
+.navbar-custom .nav-link:hover::after,
+.navbar-custom .nav-link:focus-visible::after,
+.navbar-custom .nav-link.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.mobile-nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 6px;
+    gap: 6px;
+}
+
+.mobile-nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.mobile-nav-menu {
+    display: none;
+}
+
+.mobile-nav-menu.open {
+    display: block;
+}
+
+.mobile-nav-menu {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background: var(--bg-white);
+    padding: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    z-index: 999;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+.mobile-nav-list li + li {
+    border-top: 1px solid var(--border-light);
+}
+
+.mobile-nav-link {
+    display: block;
+    padding: 14px 0;
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+    color: var(--primary);
+}
+
+.mobile-language-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.mobile-language-toggle .language-chip {
+    min-width: 80px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+}
+
+.mobile-language-toggle .language-chip:not(.active) {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border-light);
+}
+
+.mobile-language-toggle .language-chip:not(.active):hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(45, 106, 79, 0.05);
+}
+
+.mobile-book-link {
+    display: block;
+    text-decoration: none;
+}
+
+.mobile-book-btn {
+    width: 100%;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+}
+
+.mobile-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 12px 0;
+}
+
+.mobile-social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-social-links a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 991.98px) {
+    .nav-main {
+        display: none !important;
+    }
+
+    .mobile-nav-toggle {
+        display: flex !important;
+    }
+    
+    .mobile-nav-menu {
+        top: 100px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .mobile-nav-menu {
+        top: 100px;
+    }
+}
+
+.language-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+}
+
+.language-chip {
+    border: none;
+    background: transparent;
+    color: #333;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+    min-width: 46px;
+}
+
+.language-chip.active {
+    background: linear-gradient(120deg, var(--primary), var(--primary-light));
+    color: #fff;
+    box-shadow: var(--shadow-lg);
+}
+
+.language-chip:not(.active):hover {
+    color: var(--primary);
+    background: rgba(45, 106, 79, 0.08);
+}
+
+/* Search form styles */
+
+/* Button styles */
+.navbar-custom .btn {
+    background-color: green !important;
+    color: white !important;
+    height: 35px;
+    padding: 0 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+}
+
+.navbar-custom a {
+    text-decoration: none !important;
+}
+
+.navbar-custom .btn:hover,
+.navbar-custom .btn:focus,
+.navbar-custom .btn:active {
+    background-color: darkgreen !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    text-decoration: none !important;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+
+/* Main content spacing */
+.content {
+    margin-top: 100px; /* Adjusted for desktop */
+    transition: margin-top 0.3s ease;
+    position: relative;
+    z-index: 1; /* Ensure content stays below the navbars */
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+    .navbar-custom {
+        height: 60px;
+        padding: 0 10px;
+    }
+
+    .navbar-custom .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .hotel-logo {
+        font-size: 20px;
+        margin: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Hide search bar, social icons and contact link on non-desktop */
+    .navbar-custom .search-form,
+    .social-icons,
+    .navbar-custom .nav-link[href="/#contact"] {
+        display: none !important;
+    }
+
+    .navbar-custom .nav {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+        padding: 0;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .navbar-custom .nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navbar-custom .nav-link {
+        padding: 6px 8px;
+        font-size: 13px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .navbar-custom .btn {
+        padding: 0 12px;
+        height: 35px;
+        font-size: 13px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .navbar {
+        padding: 5px 10px;
+        height: 35px; /* Fixed height for consistency */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1001;
+        margin: 0;
+    }
+
+    .contact-info {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-custom {
+        padding: 8px 10px;
+        top: 35px; /* Exactly matches the height of the top navbar */
+        position: fixed;
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1000;
+        margin: 0;
+        border-top: 0;
+    }
+
+    .hotel-logo {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    /* First navbar */
+    .navbar {
+        flex-direction: column;
+        padding: 5px 0;
+        height: 40px; /* Fixed exact height */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1001;
+        margin: 0;
+    }
+
+    .contact-info {
+        font-size: 11px;
+        margin-bottom: 0;
+        text-align: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Second navbar - positioned exactly below first navbar */
+    .navbar-custom {
+        top: 40px; /* Exactly matches height of first navbar */
+        height: 60px;
+        padding: 0 10px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1000;
+        margin: 0;
+        border-top: 0;
+    }
+
+    .navbar-custom .container {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        height: 100%;
+    }
+
+    .hotel-logo {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .navbar-custom .nav {
+        margin: 0 10px;
+    }
+
+    .navbar-custom .btn {
+        padding: 0 10px;
+        font-size: 12px;
+        height: 30px;
+        white-space: nowrap;
+    }
+
+    .content {
+        margin-top: 100px; /* Adjusted to match combined navbar heights */
+        padding-top: 0;
+    }
+}
+
+/* Scroll behavior */
+.navbar-scroll {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 991.98px) {
+    /* Remove the behavior that hides the top navbar */
+    .navbar-scroll {
+        top: 0;
+    }
+    
+    /* Remove the transform that hides the top bar */
+    .top-bar-hidden {
+        transform: none;
+    }
+    
+    body.scrolled .content {
+        margin-top: 100px; /* Adjusted to account for both navbars */
+    }
+    
+    /* Keep the second navbar attached to the first navbar when scrolling */
+    body.scrolled .navbar-custom {
+        top: 35px; /* Keep below the first navbar */
+    }
+    
+    /* Ensure first navbar stays visible when scrolling */
+    body.scrolled .navbar {
+        transform: none;
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* Specific behavior for smallest screens */
+@media (max-width: 575.98px) {
+    body.scrolled .navbar-custom {
+        top: 40px; /* Match the height of first navbar in smallest screens */
+    }
+    
+    body.scrolled .content {
+        margin-top: 100px; /* Adjusted for both navbars */
+    }
+    
+    /* Ensure both navbars stay fixed and visible when scrolling */
+    .navbar, .navbar-custom {
+        transition: none; /* Prevent any transitions that might cause flickering */
+    }
+    
+    /* Override any scroll behavior that might hide navbars */
+    body.scrolled .navbar,
+    body.scrolled .navbar-custom {
+        transform: none;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Fix for iOS notch */
+@supports (padding: max(0px)) {
+    .navbar,
+    .navbar-custom {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-top: max(10px, env(safe-area-inset-top));
+    }
+}

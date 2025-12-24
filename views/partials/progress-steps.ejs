@@ -1,0 +1,20 @@
+<!-- Progress Steps -->
+<div class="steps">
+    <div class="step" id="step1">
+        <span class="circle <%= currentStep > 1 ? 'completed' : currentStep == 1 ? 'active' : '' %>"><%= currentStep > 1 ? '✓' : '' %></span>
+        <p data-i18n="progress.selectRoom">SELECT ROOM</p>
+    </div>
+    <div class="step" id="step2">
+        <span class="circle <%= currentStep > 2 ? 'completed' : currentStep == 2 ? 'active' : '' %>"><%= currentStep > 2 ? '✓' : '' %></span>
+        <p data-i18n="progress.guestDetails">GUEST DETAILS</p>
+    </div>
+    <div class="step" id="step3">
+        <span class="circle <%= currentStep > 3 ? 'completed' : currentStep == 3 ? 'active' : '' %>"><%= currentStep > 3 ? '✓' : '' %></span>
+        <p data-i18n="progress.checkout">CHECKOUT</p>
+    </div>
+    <div class="step" id="step4">
+        <span class="circle <%= currentStep >= 4 ? 'completed' : '' %>"><%= currentStep >= 4 ? '✓' : '' %></span>
+        <p data-i18n="progress.confirmation">CONFIRMATION</p>
+    </div>
+    <div class="progress-bar"></div>
+</div>

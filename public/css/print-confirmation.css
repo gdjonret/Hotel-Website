@@ -1,0 +1,345 @@
+/* Print-friendly confirmation page styles */
+.confirmation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.success-icon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.success-icon i {
+    font-size: 60px;
+    color: #333;
+}
+
+.confirmation-message {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.confirmation-message h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.confirmation-message p {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.booking-reference {
+    text-align: center;
+    margin: 25px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.booking-reference h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.booking-reference span {
+    color: #333;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    background: #f1f1f1;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.booking-details {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.booking-details h3 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.detail-group {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.detail-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.detail-label i {
+    color: #555;
+    margin-right: 8px;
+}
+
+.detail-value {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding-left: 25px;
+}
+
+.next-steps {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.next-steps h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.next-steps ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.next-steps ul li {
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.next-steps ul li i {
+    color: #555;
+    margin-right: 10px;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.button-group .btn {
+    min-width: 160px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+}
+
+.button-group .btn-primary {
+    background: #555;
+    color: white;
+}
+
+.button-group .btn-secondary {
+    background: #777;
+    color: white;
+}
+
+.button-group .btn i {
+    margin-right: 8px;
+}
+
+/* Print-specific styles */
+@media print {
+    body {
+        background: #fff;
+        font-size: 10pt;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    
+    /* Hide elements not needed for printing */
+    .room-image, 
+    .navbar, 
+    nav, 
+    nav.navbar,
+    .navbar-expand-lg,
+    .navbar-light,
+    .bg-light,
+    .steps, 
+    .progress-bar,
+    .button-group,
+    footer,
+    header,
+    .col-md-4,
+    .booking-form {
+        display: none !important;
+    }
+    
+    /* Full width container */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Make confirmation details take full width */
+    .row {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    /* Make confirmation details take full width and center it */
+    .col-md-8 {
+        width: 90% !important;
+        max-width: 650px !important;
+        flex: 0 0 100% !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        float: none !important;
+    }
+    
+    /* Booking form styles */
+    .booking-form {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        margin-bottom: 10px !important;
+        page-break-inside: avoid !important;
+        padding: 10px !important;
+    }
+    
+    .booking-form h2 {
+        font-size: 14pt !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Date display in booking summary */
+    .date-display {
+        font-size: 9pt !important;
+    }
+    
+    .summary-item {
+        margin-bottom: 8px !important;
+        padding: 8px !important;
+    }
+    
+    /* Confirmation container styles */
+    .confirmation-container {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        padding: 20px !important;
+        page-break-inside: avoid !important;
+        margin: 20px auto !important;
+        max-width: 650px !important;
+        background-color: white !important;
+    }
+    
+    .success-icon {
+        margin-bottom: 10px !important;
+    }
+    
+    .success-icon i {
+        font-size: 24pt !important;
+    }
+    
+    .confirmation-message {
+        margin: 10px 0 !important;
+    }
+    
+    .confirmation-message h2 {
+        font-size: 14pt !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .confirmation-message p {
+        font-size: 9pt !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .booking-reference {
+        margin: 10px 0 !important;
+        padding: 8px !important;
+    }
+    
+    .booking-reference h4 {
+        font-size: 10pt !important;
+    }
+    
+    .booking-details {
+        margin-top: 10px !important;
+        padding: 10px !important;
+    }
+    
+    .booking-details h3 {
+        font-size: 12pt !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .detail-group {
+        margin-bottom: 8px !important;
+        padding: 8px !important;
+    }
+    
+    .detail-label {
+        font-size: 9pt !important;
+        margin-bottom: 3px !important;
+    }
+    
+    .detail-value {
+        font-size: 9pt !important;
+        padding-left: 10px !important;
+    }
+    
+    .next-steps {
+        margin-top: 10px !important;
+        padding: 10px !important;
+    }
+    
+    .next-steps h3 {
+        font-size: 12pt !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .next-steps ul li {
+        margin-bottom: 5px !important;
+        padding: 5px !important;
+        font-size: 9pt !important;
+    }
+    
+    /* Ensure no page breaks within elements */
+    .detail-group,
+    .next-steps ul li {
+        page-break-inside: avoid !important;
+    }
+    
+    /* Add page break controls */
+    .booking-form,
+    .confirmation-container {
+        page-break-before: auto !important;
+        page-break-after: auto !important;
+    }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <%- include("../partials/head") %>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Page specific CSS -->
+    <link rel="stylesheet" href="/css/discover-chad.css">
+    <title>Discover Chad - Hotel Le Process</title>
+</head>
+<body>
+    <%- include("../partials/navbar.ejs") %>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="background-image: url('/images/chad/Sahara.jpg');">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-duration="1500" data-text="Discover Chad" style="color: #FFD700;" data-i18n="discoverChad.title">Discover Chad</h1>
+            <p data-aos="fade-up" data-aos-delay="400" data-aos-duration="1500" style="color: #FFF;" data-i18n="discoverChad.subtitle">Experience the untold beauty of Africa's heart</p>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="destinations">
+        <div class="container">
+            <div class="row">
+                <!-- Ennedi Massif -->
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="/images/chad/Ennedi.jpg" alt="Ennedi Massif">
+                        </div>
+                        <div class="destination-content">
+                            <h3 data-i18n="discoverChad.ennedi.title">Ennedi Massif</h3>
+                            <p data-i18n="discoverChad.ennedi.description">Explore the stunning natural rock formations and ancient rock art in this UNESCO World Heritage site.</p>
+                            <a href="https://explore-chad.org/en/the-ennedi-massif/" class="read-more" target="_blank" rel="noopener" data-i18n="discoverChad.ennedi.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zakouma National Park -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="/images/chad/Zakouma.jpg" alt="Zakouma National Park">
+                        </div>
+                        <div class="destination-content">
+                            <h3 data-i18n="discoverChad.zakouma.title">Zakouma National Park</h3>
+                            <p data-i18n="discoverChad.zakouma.description">Witness diverse wildlife including elephants, lions, and hundreds of bird species in their natural habitat.</p>
+                            <a href="https://www.africanparks.org/the-parks/zakouma" target="_blank" rel="noopener noreferrer" class="read-more" data-i18n="discoverChad.zakouma.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lake Chad -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="/images/chad/Lake-Chad.jpg" alt="Lake Chad">
+                        </div>
+                        <div class="destination-content">
+                            <h3 data-i18n="discoverChad.lakeChad.title">Lake Chad</h3>
+                            <p data-i18n="discoverChad.lakeChad.description">Experience the unique ecosystem of one of Africa's largest freshwater bodies and its surrounding villages.</p>
+                            <a href="https://guardian.ng/news/save-lake-chad-meeting-opens-in-nigeria/" target="_blank" rel="noopener noreferrer" class="read-more" data-i18n="discoverChad.lakeChad.learnMore">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section">
+        <div class="container">
+            <div class="culture-content" data-aos="fade-up">
+                <h2 data-i18n="discoverChad.culture.title">Rich Cultural Heritage</h2>
+                <p data-i18n="discoverChad.culture.paragraph1">Chad is home to over 200 ethnic groups, each with its own unique traditions, languages, and customs. From the nomadic Tubu people of the north to the Sara people of the south, Chad's cultural diversity is as vast as its landscape.</p>
+                <p data-i18n="discoverChad.culture.paragraph2">Experience traditional music, dance, crafts, and cuisine that have been preserved through generations, offering visitors a genuine glimpse into African cultural heritage.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="gallery-item">
+                        <a href="https://kumakonda.com/nomads-wodaabe-of-chad/" target="_blank" rel="noopener noreferrer">
+                            <img src="/images/chad/Traditional-Dance.jpg" alt="Traditional Dance">
+                            <div class="gallery-caption" data-i18n="discoverChad.gallery.dance">Traditional Dance Performance</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <a href="https://youtu.be/QfGaX7aNdVU?si=NcPCMdBgROE7v1X1" target="_blank" rel="noopener noreferrer">
+                            <img src="/images/chebe.jpg" alt="Local Market">
+                            <div class="gallery-caption" data-i18n="discoverChad.gallery.market">Poudre de chebe pour les cheveux</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <a href="https://agri4africa.com/unlocking-the-secrets-of-gum-arabic-a-journey-from-the-african-savannah-to-the-global-market/" target="_blank" rel="noopener noreferrer">
+                            <img src="/images/chad/Gum-arabic.jpg" alt="Gum Arabic Production">
+                            <div class="gallery-caption" data-i18n="discoverChad.gallery.gumArabic">Traditional Gum Arabic Production</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include("../partials/footer.ejs") %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    
+    <!-- i18next for translations -->
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
+    <script src="/js/i18n-client.js"></script>
+</body>
+</html>

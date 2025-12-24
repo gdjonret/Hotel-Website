@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <%- include("../partials/head") %>
+    <!-- Page specific CSS -->
+    <link rel="stylesheet" href="/css/BookNow.css">
+    <link rel="stylesheet" href="/css/GuestDetails.css">
+    <link rel="stylesheet" href="/css/Checkout.css">
+    <link rel="stylesheet" href="/css/hotel-checkout.css">
+    <link rel="stylesheet" href="/css/progress-bar.css">
+    <title>Checkout - Hotel Le Process</title>
+    <style>
+        .guest-details-review {
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .detail-item {
+            margin-bottom: 20px;
+        }
+        .detail-item label {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .detail-item p {
+            margin: 0;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .detail-item i {
+            margin-right: 8px;
+            color: #495057;
+            font-size: 0.9em;
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #007bff;
+            margin: 15px auto 0;
+        }
+        .payment-options {
+            margin-top: 40px;
+            padding-top: 20px;
+        }
+        .payment-options .alert {
+            border: none;
+            background-color: #f8f9fa;
+            border-left: 4px solid #17a2b8;
+        }
+        .payment-options ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .payment-options ul li {
+            margin-bottom: 8px;
+            color: #495057;
+        }
+        .payment-options ul li:before {
+            content: "✓";
+            margin-right: 10px;
+            color: #28a745;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding: 0;
+        }
+        .button-group .btn {
+            min-width: 120px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .button-group .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            color: white;
+        }
+        .button-group .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        .button-group .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .button-group .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .button-group .btn i {
+            margin: 0 8px;
+        }
+        @media (max-width: 576px) {
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .button-group .btn {
+                width: 100%;
+            }
+        }
+        .detail-section {
+            margin-bottom: 30px;
+        }
+        .detail-section-title {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../partials/navbar.ejs") %>
+    <div class="room-image">
+        <img src="/images/h1.jpg" alt="Standard Room">
+    </div>
+    <div class="container">
+        <%- include("../partials/progress-steps.ejs", {currentStep: 3}) %>
+
+        <div class="row">
+            <!-- Left Column: Booking Summary -->
+            <div class="col-md-4">
+                <%- include("../partials/booking-summary.ejs") %>
+            </div>
+
+            <!-- Right Column: Guest Details Review and Payment Options -->
+            <div class="col-md-8">
+                <div class="hotel-checkout">
+                    <div class="checkout-header">
+                        <h1 data-i18n="checkout.title">Review Your Details</h1>
+                        <p data-i18n="checkout.subtitle">Please confirm your information before proceeding</p>
+                    </div>
+                    
+                    <div class="checkout-body">
+                        <!-- Personal Information -->
+                        <div class="checkout-section">
+                            <h2 data-i18n="checkout.personalInfo">Personal Information</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-user"></i> <span data-i18n="guestDetails.firstName">First Name</span></label>
+                                        <p id="reviewFirstName">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-user"></i> <span data-i18n="guestDetails.lastName">Last Name</span></label>
+                                        <p id="reviewLastName">Loading...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-envelope"></i> <span data-i18n="guestDetails.email">Email</span></label>
+                                        <p id="reviewEmail">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-phone"></i> <span data-i18n="guestDetails.phone">Phone</span></label>
+                                        <p id="reviewPhone">Loading...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address Information -->
+                        <div class="checkout-section">
+                            <h2 data-i18n="checkout.addressInfo">Address Information</h2>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-city"></i> <span data-i18n="guestDetails.city">City</span></label>
+                                        <p id="reviewCity">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-globe"></i> <span data-i18n="guestDetails.country">Country</span></label>
+                                        <p id="reviewCountry">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-mail-bulk"></i> <span data-i18n="guestDetails.zip">ZIP</span></label>
+                                        <p id="reviewZip">Loading...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="checkout-section">
+                            <h2 data-i18n="checkout.additionalInfo">Additional Information</h2>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="detail-item">
+                                        <label><i class="fas fa-comment"></i> <span data-i18n="guestDetails.specialRequests">Special Requests</span></label>
+                                        <p id="reviewSpecialRequests">Loading...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Payment Options Section -->
+                        <div class="checkout-section">
+                            <h2 data-i18n="checkout.paymentOptions">Payment Options</h2>
+                            <div class="payment-info">
+                                <p><i class="fas fa-info-circle"></i> <span data-i18n="checkout.paymentInfo">Payment will be collected at check-in. You can pay using:</span></p>
+                                <ul>
+                                    <li data-i18n="checkout.creditCard">Credit/Debit Card</li>
+                                    <li data-i18n="checkout.cash">Cash</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" onclick="goBackToGuestDetails()">
+                                <i class="fas fa-arrow-left"></i> <span data-i18n="checkout.back">Back</span>
+                            </button>
+                            <button type="button" onclick="proceedToConfirmation()">
+                                <span data-i18n="checkout.submit">Submit</span> <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Utility libraries (load before page scripts) -->
+    <script src="/js/lib/utils.js"></script>
+    <script src="/js/lib/dates.js"></script>
+    <script src="/js/lib/booking.js"></script>
+    <script src="/js/lib/flatpickr-helpers.js"></script>
+    <script>
+        function loadGuestDetails() {
+            try {
+                const raw = localStorage.getItem('guestDetails');
+                return raw ? JSON.parse(raw) : null;
+            } catch (_) {
+                return null;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            if (window.trackPageView) {
+                window.trackPageView('Checkout');
+            }
+            if (window.trackBookingStep) {
+                window.trackBookingStep('Checkout Page');
+            }
+            
+            loadBookingSummary();
+            loadGuestDetailsReview();
+        });
+
+        function loadGuestDetailsReview() {
+            const guestDetails = loadGuestDetails();
+            
+            if (!guestDetails) {
+                console.warn('No guest details found');
+                return;
+            }
+            
+            // Update review fields with null checks
+            const setTextContent = (id, value) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = value || 'N/A';
+            };
+            
+            setTextContent('reviewFirstName', guestDetails.firstName);
+            setTextContent('reviewLastName', guestDetails.lastName);
+            setTextContent('reviewEmail', guestDetails.email);
+            setTextContent('reviewPhone', guestDetails.phone);
+            setTextContent('reviewCity', guestDetails.city);
+            setTextContent('reviewCountry', guestDetails.country);
+            setTextContent('reviewZip', guestDetails.zip);
+            setTextContent('reviewSpecialRequests', guestDetails.specialRequests || 'None');
+        }
+
+        function goBackToGuestDetails() {
+            window.location.href = '/GuestDetails';
+        }
+
+        function proceedToConfirmation() {
+            // Track checkout completion
+            if (window.trackBookingStep) {
+                window.trackBookingStep('Proceed to Confirmation');
+            }
+            
+            // FIXED: Set payment method as "Pay on Arrival" instead of fake "completed"
+            localStorage.setItem('paymentMethod', 'PAY_ON_ARRIVAL');
+            localStorage.setItem('paymentStatus', 'PENDING');
+            window.location.href = '/confirmation';
+        }
+    </script>
+    
+    <!-- i18next for translations -->
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
+    <script src="/js/i18n-client.js"></script>
+</body>
+</html>
