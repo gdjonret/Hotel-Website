@@ -1,107 +1,140 @@
 # Hotel Le Process
 
-A hotel booking system with a Node.js Express frontend and a Spring Boot backend.
+A modern hotel reservation experience that blends an EJS-powered Node.js frontend with a Spring Boot + PostgreSQL backend. This repository contains the public website, the internal admin console, and the documentation/runbooks used by the team.
 
-## System Architecture
+## Table of Contents
 
-The system consists of two main components:
+1. [Architecture Overview](#architecture-overview)
+2. [Tech Stack](#tech-stack)
+3. [Getting Started](#getting-started)
+4. [Running the Applications](#running-the-applications)
+5. [Verification & QA](#verification--qa)
+6. [Admin Platform](#admin-platform)
+7. [API Surface](#api-surface)
+8. [Documentation Directory](#documentation-directory)
+9. [Troubleshooting](#troubleshooting)
 
-1. **Frontend**: A Node.js Express application serving EJS templates
-2. **Backend**: A Spring Boot Java application with a PostgreSQL database
+## Architecture Overview
 
-## Setup and Running
+| Layer      | Description                                                                                 |
+|------------|---------------------------------------------------------------------------------------------|
+| Frontend   | Node.js + Express server rendering EJS templates, powering both the guest-facing site and the `/admin/*` screens. Assets live under `public/` with localization strings in `locales/`. |
+| Backend    | Spring Boot service exposing booking APIs, room inventory, and admin mutations, persisting data to PostgreSQL.                |
+| Integrations | Payment, room availability, and operations handled through the backend API exposed to the frontend/admin clients. |
+
+## Tech Stack
+
+- **Frontend:** Node.js (v14+), Express, EJS, vanilla JS/CSS.
+- **Backend:** Java 17+, Spring Boot, PostgreSQL.
+- **Tooling:** npm scripts, Maven wrapper, shell utilities in `check_backend.sh`.
+
+## Getting Started
 
 ### Prerequisites
 
-- Node.js (v14+)
-- Java 17+
-- PostgreSQL
+- Node.js v14 or newer
+- Java 17 or newer
+- PostgreSQL (local instance or container)
 
-### Starting the Backend
+### Installation
 
-1. Navigate to the Backend-Hotel directory:
-   ```
-   cd ~/Desktop/Backend-Hotel
-   ```
+```bash
+# install frontend dependencies
+npm install
 
-2. Run the Spring Boot application:
-   ```
-   ./mvnw spring-boot:run
-   ```
-
-3. The backend will start on http://localhost:8080
-
-### Starting the Frontend
-
-1. Navigate to the Hotel_process directory:
-   ```
-   cd ~/Documents/Hotel_process\ 2
-   ```
-
-2. Install dependencies (if not already done):
-   ```
-   npm install
-   ```
-
-3. Start the frontend application:
-   ```
-   npm start
-   ```
-
-4. The frontend will start on http://localhost:3000
-
-### Quick Check Script
-
-We've included a script to check if the backend is running:
-
+# (optional) ensure Maven wrapper is executable for the backend service
+chmod +x Backend-Hotel/mvnw
 ```
+
+## Running the Applications
+
+### Backend (Spring Boot)
+
+```bash
+cd Backend-Hotel
+./mvnw spring-boot:run
+# API available at http://localhost:8080
+```
+
+### Frontend (Express)
+
+```bash
+cd Hotel-Website
+npm start
+# Website available at http://localhost:3000
+```
+
+### Quick Health Check
+
+Use the helper script to confirm the backend is online:
+
+```bash
 ./check_backend.sh
 ```
 
-This script will:
-- Check if the backend is running
-- Try to start it if it's not running
-- Provide instructions for manual startup if needed
+It pings the service, attempts a restart if needed, and provides manual remediation steps when automatic recovery fails.
 
-## Testing the Booking Flow
+## Verification & QA
 
-1. Make sure both frontend and backend are running
-2. Visit http://localhost:3000/BookNow
-3. Select a room and dates
-4. Fill in guest details
-5. Complete the checkout process
-6. View your booking confirmation
+1. Start both frontend and backend services.
+2. Navigate to `http://localhost:3000/BookNow`.
+3. Pick dates and a room type (Standard Single – 20,000 FCFA/night, Premium Single – 25,000 FCFA/night).
+4. Complete the guest form and submit the reservation.
+5. Confirm the booking summary and verify the backend records the entry.
 
-## Room Types and Pricing
+## Admin Platform
 
-- **Standard Single Room**: 20,000 FCFA/night
-- **Premium Single Room**: 25,000 FCFA/night
+- **Entry point:** `http://localhost:3000/admin/room-types`
+- **Purpose:** Manage room-type inventory, pricing, and amenity metadata surfaced to the guest site.
+- **Authentication:** Protect these routes behind your preferred middleware (basic auth, session, etc.). Wire up credentials before deploying publicly.
+- **Data source:** Pages call the same backend APIs (`/api/admin/bookings`, `/api/room-types`, etc.) via the Express layer.
 
-## API Endpoints
+Quick smoke test:
 
-### Public API (No Authentication)
+```bash
+# with frontend running
+open http://localhost:3000/admin/room-types
+```
 
-- `POST /api/public/bookings` - Create a new booking
+You should see the management console with loading spinner, followed by room-type cards once the backend responds. Editing actions reuse the bookings/room-type services under `src/services`.
 
-### Admin API (Requires Authentication)
+## API Surface
 
-- `GET /api/admin/bookings` - List all bookings
-- `GET /api/admin/bookings/{id}` - Get a specific booking
-- `PUT /api/admin/bookings/{id}` - Update a booking
-- `DELETE /api/admin/bookings/{id}` - Delete a booking
+| Scope         | Endpoint                       | Description                |
+|---------------|--------------------------------|----------------------------|
+| Public        | `POST /api/public/bookings`    | Create a new booking       |
+| Admin (auth)  | `GET /api/admin/bookings`      | List bookings              |
+|               | `GET /api/admin/bookings/{id}` | Retrieve booking by ID     |
+|               | `PUT /api/admin/bookings/{id}` | Update booking             |
+|               | `DELETE /api/admin/bookings/{id}` | Remove booking          |
+
+## Documentation Directory
+
+All implementation notes, retrospectives, and runbooks now live in `docs/`. Notable sections:
+
+- `docs/reports/` – feature deep dives (amenities, SEO strategy, booking flows, etc.).
+- `docs/architecture/` – diagrams and stack decisions.
+- `docs/runbooks/` – deployment and troubleshooting procedures.
 
 ## Troubleshooting
 
-### CORS Issues
+### CORS
 
-If you encounter CORS issues, check:
-1. The backend CORS configuration in `WebConfig.java`
-2. The frontend API calls in `confirmation.js`
-3. Make sure the URLs in `.env` match your actual running services
+1. Inspect the backend CORS config (`WebConfig.java`).
+2. Verify frontend API URLs (see `src/js/confirmation.js` or equivalent fetch logic).
+3. Align `.env` origins with running hosts.
 
-### Database Connection Issues
+### Database
 
-If the backend fails to start due to database issues:
-1. Check PostgreSQL is running
-2. Verify database credentials in `application.yml`
-3. Ensure the `hotel_db` database exists
+1. Confirm PostgreSQL is running locally.
+2. Validate credentials in `application.yml`.
+3. Ensure the `hotel_db` schema exists (and apply migrations if applicable).
+
+### Frontend Build/Start Issues
+
+- Reinstall dependencies with `npm ci` if `node_modules` becomes inconsistent.
+- Clear any conflicting processes on port 3000 (`lsof -i :3000`).
+
+---
+
+Questions or improvements? Open an issue or contribute via pull request.
