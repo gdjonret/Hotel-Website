@@ -16,12 +16,8 @@ const env = {
   },
 
   // Backend service configuration
-  get BACKEND_ORIGIN() {
-    return process.env.BACKEND_ORIGIN || 'http://localhost:8080';
-  },
-
   get BACKEND_URL() {
-    return process.env.BACKEND_URL || process.env.BACKEND_ORIGIN || 'http://localhost:8080';
+    return process.env.BACKEND_URL || 'http://localhost:8080';
   },
 
   // Frontend configuration
@@ -115,7 +111,6 @@ const env = {
       PORT: this.PORT,
       NODE_ENV: this.NODE_ENV,
       HOST: this.HOST,
-      BACKEND_ORIGIN: this.BACKEND_ORIGIN,
       BACKEND_URL: this.BACKEND_URL,
       FRONTEND_PORT: this.FRONTEND_PORT,
       FRONTEND_URL: this.FRONTEND_URL,
