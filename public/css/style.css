@@ -1485,17 +1485,6 @@ section.about.top .professional-image:hover {
     font-weight: 300;
   }
 
-  .bottom .developer-credit a {
-    color: #c9a961;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .bottom .developer-credit a:hover {
-    color: #d4b76e;
-    text-decoration: underline;
-  }
-
   .bottom .credit a {
     color: #c8a97e;
     text-decoration: none;
