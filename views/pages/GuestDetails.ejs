@@ -267,13 +267,13 @@
 
             // Additional validation
             if (window.isValidEmail && !window.isValidEmail(guestDetails.email)) {
-                window.showAlert('warnings.booking.validEmail', 'Please enter a valid email address');
+                alert('Please enter a valid email address');
                 document.getElementById('email').focus();
                 return;
             }
 
             if (window.isValidPhone && !window.isValidPhone(guestDetails.phone)) {
-                window.showAlert('warnings.booking.validPhone', 'Please enter a valid phone number');
+                alert('Please enter a valid phone number');
                 document.getElementById('phone').focus();
                 return;
             }

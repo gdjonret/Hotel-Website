@@ -275,12 +275,12 @@
           const g  = getAdultsSafe($ad);
   
           if (!ci || !co || !g) {
-            window.showAlert('warnings.booking.fillAllFields', 'Please fill in all required fields');
+            alert('Please fill in all required fields');
             return;
           }
           const ciDt = parseYmd(ci), coDt = parseYmd(co);
           if (!ciDt || !coDt || coDt <= ciDt) {
-            window.showAlert('warnings.booking.invalidCheckout', 'Check-out date must be after check-in date');
+            alert('Check-out date must be after check-in date');
             return;
           }
           // Persist latest (so GuestDetails/Confirmation can read)
@@ -308,25 +308,9 @@
           
           // CRITICAL FIX: Make availability check MANDATORY
           const hasAvailability = btn.getAttribute('data-has-availability');
-          console.log('Book Now clicked - hasAvailability:', hasAvailability);
-          
           if (hasAvailability === 'false') {
-            console.log('Blocking booking - showing availability warning');
-            
             // Block booking and show clear error message
-            if (typeof window.showAlert === 'function') {
-              console.log('Using window.showAlert');
-              window.showAlert('warnings.booking.checkAvailabilityFirst', '⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
-            } else {
-              console.log('Fallback to regular alert');
-              alert('⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
-            }
-            
-            // Also show the inline warning message if it exists
-            const warningMsg = btn.parentElement.querySelector('.availability-warning-message');
-            if (warningMsg) {
-              warningMsg.style.display = 'block';
-            }
+            alert('⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
             
             // Scroll to the search form
             const searchForm = document.getElementById('searchForm');
@@ -341,20 +325,18 @@
             
             return; // BLOCK the booking process
           }
-          
-          console.log('Availability check passed, proceeding with booking');
   
           const ci = toYmd($in.value || $in._flatpickr?.input?.value);
           const co = toYmd($out.value || $out._flatpickr?.input?.value);
           const g  = getAdultsSafe($ad);
   
           if (!ci || !co || !g) {
-            window.showAlert('warnings.booking.selectDatesAndGuests', 'Please select check-in, check-out, and guests');
+            alert('Please select check-in, check-out, and guests');
             return;
           }
           const ciDt = parseYmd(ci), coDt = parseYmd(co);
           if (!ciDt || !coDt || coDt <= ciDt) {
-            window.showAlert('warnings.booking.invalidCheckout', 'Check-out date must be after check-in date');
+            alert('Check-out date must be after check-in date');
             return;
           }
   

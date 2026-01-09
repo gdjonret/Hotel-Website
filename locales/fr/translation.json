@@ -196,37 +196,5 @@
   },
   "guestDetails": {
     "selectCountry": "Sélectionnez votre pays"
-  },
-  "warnings": {
-    "sessionTimeout": {
-      "title": "Avertissement d'expiration de session",
-      "message": "Votre session expirera dans <strong>5 minutes</strong>. Veuillez terminer votre réservation pour protéger vos informations.",
-      "button": "Rester connecté"
-    },
-    "browserCompatibility": {
-      "title": "Problème de compatibilité du navigateur",
-      "missingFeatures": "Votre navigateur ne dispose pas des fonctionnalités requises : <strong>{{features}}</strong>",
-      "updateMessage": "Veuillez mettre à jour votre navigateur ou utiliser un navigateur moderne comme :",
-      "browsers": [
-        "Google Chrome (dernière version)",
-        "Mozilla Firefox (dernière version)",
-        "Microsoft Edge (dernière version)",
-        "Safari (dernière version)"
-      ]
-    },
-    "booking": {
-      "fillAllFields": "Veuillez remplir tous les champs obligatoires",
-      "invalidCheckout": "La date de départ doit être après la date d'arrivée",
-      "checkAvailabilityFirst": "⚠️ Veuillez d'abord vérifier la disponibilité des chambres !\n\nCliquez sur \"VÉRIFIER LES CHAMBRES\" en haut de la page pour voir les chambres disponibles pour vos dates sélectionnées.",
-      "selectDatesAndGuests": "Veuillez sélectionner les dates d'arrivée, de départ et le nombre d'invités",
-      "selectCheckinDate": "Veuillez sélectionner une date d'arrivée",
-      "selectCheckoutDate": "Veuillez sélectionner une date de départ",
-      "selectGuests": "Veuillez sélectionner le nombre d'invités",
-      "invalidDateFormat": "Format de date invalide. Veuillez sélectionner les dates dans le calendrier.",
-      "checkoutAfterCheckin": "La date de départ doit être au moins un jour après la date d'arrivée",
-      "validEmail": "Veuillez entrer une adresse e-mail valide",
-      "validPhone": "Veuillez entrer un numéro de téléphone valide",
-      "missingBookingData": "Informations de réservation ou d'invité manquantes. Veuillez recommencer."
-    }
   }
 }

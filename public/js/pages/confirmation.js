@@ -41,7 +41,7 @@ function toCurrency(n) {
       if (window.trackError) {
         window.trackError('Booking Flow', 'Missing booking data on confirmation page');
       }
-      window.showAlert('warnings.booking.missingBookingData', 'Missing booking or guest details. Please start again.');
+      alert('Missing booking or guest details. Please start again.');
       return location.replace('/BookNow');
     }
   

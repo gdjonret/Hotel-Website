@@ -74,19 +74,19 @@ document.addEventListener('DOMContentLoaded', function () {
   
       // Specific error messages for each field
       if (!inStr) {
-        window.showAlert('warnings.booking.selectCheckinDate', 'Please select a check-in date');
+        alert('Please select a check-in date');
         $in.focus();
         return;
       }
       
       if (!outStr) {
-        window.showAlert('warnings.booking.selectCheckoutDate', 'Please select a check-out date');
+        alert('Please select a check-out date');
         $out.focus();
         return;
       }
       
       if (!adults) {
-        window.showAlert('warnings.booking.selectGuests', 'Please select number of guests');
+        alert('Please select number of guests');
         $adults.focus();
         return;
       }
@@ -96,12 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
       const co = parseYmd(outStr);
       
       if (!ci || !co) {
-        window.showAlert('warnings.booking.invalidDateFormat', 'Invalid date format. Please select dates from the calendar.');
+        alert('Invalid date format. Please select dates from the calendar.');
         return;
       }
       
       if (co <= ci) {
-        window.showAlert('warnings.booking.checkoutAfterCheckin', 'Check-out date must be at least one day after check-in date');
+        alert('Check-out date must be at least one day after check-in date');
         $out.focus();
         return;
       }
