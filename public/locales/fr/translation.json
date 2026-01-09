@@ -254,7 +254,9 @@
     "room": "chambre",
     "totalRooms": "Chambres totales:",
     "notAvailable": "Non disponible",
-    "moreDetails": "Plus de détails"
+    "moreDetails": "Plus de détails",
+    "alertAvailability": "Veuillez d'abord vérifier la disponibilité des chambres !",
+    "alertInstruction": "Cliquez sur \"VÉRIFIER LES CHAMBRES\" en haut de la page pour voir les chambres disponibles pour vos dates sélectionnées."
   },
   "amenityNames": {
     "air_conditioning": "Climatisation",

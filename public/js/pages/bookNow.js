@@ -310,7 +310,8 @@
           const hasAvailability = btn.getAttribute('data-has-availability');
           if (hasAvailability === 'false') {
             // Block booking and show clear error message
-            alert('⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
+            const alertMessage = `⚠️ ${i18next.t('bookNow.alertAvailability')}\n\n${i18next.t('bookNow.alertInstruction')}`;
+            alert(alertMessage);
             
             // Scroll to the search form
             const searchForm = document.getElementById('searchForm');

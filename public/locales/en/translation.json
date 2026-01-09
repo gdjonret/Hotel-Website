@@ -254,7 +254,9 @@
     "room": "room",
     "totalRooms": "Total Rooms:",
     "notAvailable": "Not Available",
-    "moreDetails": "More details"
+    "moreDetails": "More details",
+    "alertAvailability": "Please check room availability first!",
+    "alertInstruction": "Click \"CHECK ROOMS\" at the top of the page to see available rooms for your selected dates."
   },
   "amenityNames": {
     "air_conditioning": "Air conditioning",
