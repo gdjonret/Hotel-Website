@@ -1408,6 +1408,8 @@ section.about.top .professional-image:hover {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    align-items: center;
+    text-align: center;
   }
 
   footer .contact-item {
@@ -1418,13 +1420,6 @@ section.about.top .professional-image:hover {
     font-size: 0.88rem;
     font-weight: 300;
     transition: all 0.3s ease;
-    line-height: 1.6;
-  }
-
-  footer .contact-item span,
-  footer .contact-item a {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
   }
 
   footer .contact-item:hover {
@@ -1579,13 +1574,6 @@ section.about.top .professional-image:hover {
 
     footer .contact-item {
       font-size: 0.85rem;
-      align-items: center;
-    }
-
-    footer .contact-item span:not(.fas),
-    footer .contact-item a {
-      flex: 1;
-      min-width: 0;
     }
 
     footer .bottom {
