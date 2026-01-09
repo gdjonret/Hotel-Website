@@ -196,5 +196,37 @@
   },
   "guestDetails": {
     "selectCountry": "Select your country"
+  },
+  "warnings": {
+    "sessionTimeout": {
+      "title": "Session Timeout Warning",
+      "message": "Your session will expire in <strong>5 minutes</strong>. Please complete your booking to keep your information safe.",
+      "button": "Stay signed in"
+    },
+    "browserCompatibility": {
+      "title": "Browser Compatibility Issue",
+      "missingFeatures": "Your browser is missing required features: <strong>{{features}}</strong>",
+      "updateMessage": "Please update your browser or use a modern browser like:",
+      "browsers": [
+        "Google Chrome (latest version)",
+        "Mozilla Firefox (latest version)",
+        "Microsoft Edge (latest version)",
+        "Safari (latest version)"
+      ]
+    },
+    "booking": {
+      "fillAllFields": "Please fill in all required fields",
+      "invalidCheckout": "Check-out date must be after check-in date",
+      "checkAvailabilityFirst": "⚠️ Please check room availability first!\n\nClick \"CHECK ROOMS\" at the top of the page to see available rooms for your selected dates.",
+      "selectDatesAndGuests": "Please select check-in, check-out, and guests",
+      "selectCheckinDate": "Please select a check-in date",
+      "selectCheckoutDate": "Please select a check-out date",
+      "selectGuests": "Please select number of guests",
+      "invalidDateFormat": "Invalid date format. Please select dates from the calendar.",
+      "checkoutAfterCheckin": "Check-out date must be at least one day after check-in date",
+      "validEmail": "Please enter a valid email address",
+      "validPhone": "Please enter a valid phone number",
+      "missingBookingData": "Missing booking or guest details. Please start again."
+    }
   }
 }

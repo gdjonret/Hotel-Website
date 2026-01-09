@@ -275,12 +275,12 @@
           const g  = getAdultsSafe($ad);
   
           if (!ci || !co || !g) {
-            alert('Please fill in all required fields');
+            window.showAlert('warnings.booking.fillAllFields', 'Please fill in all required fields');
             return;
           }
           const ciDt = parseYmd(ci), coDt = parseYmd(co);
           if (!ciDt || !coDt || coDt <= ciDt) {
-            alert('Check-out date must be after check-in date');
+            window.showAlert('warnings.booking.invalidCheckout', 'Check-out date must be after check-in date');
             return;
           }
           // Persist latest (so GuestDetails/Confirmation can read)
@@ -310,7 +310,7 @@
           const hasAvailability = btn.getAttribute('data-has-availability');
           if (hasAvailability === 'false') {
             // Block booking and show clear error message
-            alert('⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
+            window.showAlert('warnings.booking.checkAvailabilityFirst', '⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
             
             // Scroll to the search form
             const searchForm = document.getElementById('searchForm');
@@ -331,12 +331,12 @@
           const g  = getAdultsSafe($ad);
   
           if (!ci || !co || !g) {
-            alert('Please select check-in, check-out, and guests');
+            window.showAlert('warnings.booking.selectDatesAndGuests', 'Please select check-in, check-out, and guests');
             return;
           }
           const ciDt = parseYmd(ci), coDt = parseYmd(co);
           if (!ciDt || !coDt || coDt <= ciDt) {
-            alert('Check-out date must be after check-in date');
+            window.showAlert('warnings.booking.invalidCheckout', 'Check-out date must be after check-in date');
             return;
           }
   

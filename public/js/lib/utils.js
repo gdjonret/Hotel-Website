@@ -166,6 +166,12 @@
       existingWarning.remove();
     }
 
+    // Get translated messages
+    const t = (key) => window.i18next ? window.i18next.t(key) : key;
+    const title = t('warnings.sessionTimeout.title');
+    const message = t('warnings.sessionTimeout.message');
+    const button = t('warnings.sessionTimeout.button');
+
     const warningDiv = document.createElement('div');
     warningDiv.id = 'sessionWarning';
     warningDiv.className = 'session-warning';
@@ -177,11 +183,11 @@
           <i class="fas fa-clock"></i>
         </div>
         <div class="session-warning__text">
-          <h2>Session Timeout Warning</h2>
-          <p>Your session will expire in <strong>5 minutes</strong>. Please complete your booking to keep your information safe.</p>
+          <h2>${title}</h2>
+          <p>${message}</p>
         </div>
         <div class="session-warning__actions">
-          <button type="button" class="session-warning__cta" onclick="dismissSessionWarning()">Stay signed in</button>
+          <button type="button" class="session-warning__cta" onclick="dismissSessionWarning()">${button}</button>
         </div>
       </div>
       <div class="session-warning__progress" aria-hidden="true"></div>
@@ -253,18 +259,27 @@
     if (missing.length > 0) {
       console.error('❌ Browser compatibility issues:', missing);
       
+      // Get translated messages
+      const t = (key, options) => window.i18next ? window.i18next.t(key, options) : key;
+      const title = t('warnings.browserCompatibility.title');
+      const missingFeatures = t('warnings.browserCompatibility.missingFeatures', { features: missing.join(', ') });
+      const updateMessage = t('warnings.browserCompatibility.updateMessage');
+      const browsers = window.i18next ? window.i18next.t('warnings.browserCompatibility.browsers', { returnObjects: true }) : [
+        'Google Chrome (latest version)',
+        'Mozilla Firefox (latest version)',
+        'Microsoft Edge (latest version)',
+        'Safari (latest version)'
+      ];
+      
       const errorDiv = document.createElement('div');
       errorDiv.className = 'alert alert-danger';
       errorDiv.style.cssText = 'margin: 20px; padding: 20px;';
       errorDiv.innerHTML = `
-        <h4><i class="fas fa-exclamation-triangle"></i> Browser Compatibility Issue</h4>
-        <p>Your browser is missing required features: <strong>${missing.join(', ')}</strong></p>
-        <p>Please update your browser or use a modern browser like:</p>
+        <h4><i class="fas fa-exclamation-triangle"></i> ${title}</h4>
+        <p>${missingFeatures}</p>
+        <p>${updateMessage}</p>
         <ul>
-          <li>Google Chrome (latest version)</li>
-          <li>Mozilla Firefox (latest version)</li>
-          <li>Microsoft Edge (latest version)</li>
-          <li>Safari (latest version)</li>
+          ${browsers.map(browser => `<li>${browser}</li>`).join('')}
         </ul>
       `;
       
@@ -277,6 +292,19 @@
     
     console.log('✅ Browser compatibility check passed');
     return true;
+  };
+
+  // ===== Translated Alert Helper =====
+  
+  // Global helper function to show translated alerts
+  window.showAlert = function showAlert(translationKey, fallbackMessage) {
+    const message = window.i18next ? window.i18next.t(translationKey) : fallbackMessage;
+    alert(message);
+  };
+
+  // Global helper function to get translated text
+  window.t = function t(key, options) {
+    return window.i18next ? window.i18next.t(key, options) : key;
   };
 
   // Auto-check on load
