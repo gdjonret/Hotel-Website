@@ -308,13 +308,24 @@
           
           // CRITICAL FIX: Make availability check MANDATORY
           const hasAvailability = btn.getAttribute('data-has-availability');
+          console.log('Book Now clicked - hasAvailability:', hasAvailability);
+          
           if (hasAvailability === 'false') {
+            console.log('Blocking booking - showing availability warning');
+            
             // Block booking and show clear error message
             if (typeof window.showAlert === 'function') {
+              console.log('Using window.showAlert');
               window.showAlert('warnings.booking.checkAvailabilityFirst', '⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
             } else {
-              // Fallback if showAlert isn't loaded yet
+              console.log('Fallback to regular alert');
               alert('⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
+            }
+            
+            // Also show the inline warning message if it exists
+            const warningMsg = btn.parentElement.querySelector('.availability-warning-message');
+            if (warningMsg) {
+              warningMsg.style.display = 'block';
             }
             
             // Scroll to the search form
@@ -330,6 +341,8 @@
             
             return; // BLOCK the booking process
           }
+          
+          console.log('Availability check passed, proceeding with booking');
   
           const ci = toYmd($in.value || $in._flatpickr?.input?.value);
           const co = toYmd($out.value || $out._flatpickr?.input?.value);
