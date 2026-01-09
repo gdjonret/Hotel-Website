@@ -300,19 +300,36 @@
   window.showAlert = function showAlert(translationKey, fallbackMessage) {
     let message = fallbackMessage;
     
+    console.log('showAlert called with key:', translationKey);
+    console.log('i18next available:', !!window.i18next);
+    console.log('i18next.t available:', !!(window.i18next && typeof window.i18next.t === 'function'));
+    
     // Try to get translated message if i18next is available and initialized
     if (window.i18next && typeof window.i18next.t === 'function') {
       try {
+        const currentLang = window.i18next.language;
+        console.log('Current language:', currentLang);
+        
         const translated = window.i18next.t(translationKey);
+        console.log('Translation result:', translated);
+        console.log('Translation key:', translationKey);
+        console.log('Are they equal?', translated === translationKey);
+        
         // Only use translation if it's not the same as the key (meaning it was found)
         if (translated && translated !== translationKey) {
           message = translated;
+          console.log('Using translated message');
+        } else {
+          console.log('Translation not found, using fallback');
         }
       } catch (e) {
         console.warn('Translation failed for key:', translationKey, e);
       }
+    } else {
+      console.log('i18next not ready, using fallback message');
     }
     
+    console.log('Final message:', message);
     alert(message);
   };
 
