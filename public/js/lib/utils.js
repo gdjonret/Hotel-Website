@@ -298,13 +298,34 @@
   
   // Global helper function to show translated alerts
   window.showAlert = function showAlert(translationKey, fallbackMessage) {
-    const message = window.i18next ? window.i18next.t(translationKey) : fallbackMessage;
+    let message = fallbackMessage;
+    
+    // Try to get translated message if i18next is available and initialized
+    if (window.i18next && typeof window.i18next.t === 'function') {
+      try {
+        const translated = window.i18next.t(translationKey);
+        // Only use translation if it's not the same as the key (meaning it was found)
+        if (translated && translated !== translationKey) {
+          message = translated;
+        }
+      } catch (e) {
+        console.warn('Translation failed for key:', translationKey, e);
+      }
+    }
+    
     alert(message);
   };
 
   // Global helper function to get translated text
   window.t = function t(key, options) {
-    return window.i18next ? window.i18next.t(key, options) : key;
+    if (window.i18next && typeof window.i18next.t === 'function') {
+      try {
+        return window.i18next.t(key, options);
+      } catch (e) {
+        console.warn('Translation failed for key:', key, e);
+      }
+    }
+    return key;
   };
 
   // Auto-check on load

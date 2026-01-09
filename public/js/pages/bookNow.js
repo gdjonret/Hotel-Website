@@ -310,7 +310,12 @@
           const hasAvailability = btn.getAttribute('data-has-availability');
           if (hasAvailability === 'false') {
             // Block booking and show clear error message
-            window.showAlert('warnings.booking.checkAvailabilityFirst', '⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
+            if (typeof window.showAlert === 'function') {
+              window.showAlert('warnings.booking.checkAvailabilityFirst', '⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
+            } else {
+              // Fallback if showAlert isn't loaded yet
+              alert('⚠️ Please check room availability first!\n\nClick "CHECK ROOMS" at the top of the page to see available rooms for your selected dates.');
+            }
             
             // Scroll to the search form
             const searchForm = document.getElementById('searchForm');
