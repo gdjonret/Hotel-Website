@@ -1240,8 +1240,8 @@ section.about.top .professional-image:hover {
     margin: 0 auto;
     padding: 70px 40px 40px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 80px;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 110px;
     position: relative;
   }
 
@@ -1336,8 +1336,9 @@ section.about.top .professional-image:hover {
 
   footer .footer-links-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    column-gap: 80px;
+    row-gap: 20px;
   }
 
   footer .footer-column h3 {
