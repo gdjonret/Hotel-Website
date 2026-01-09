@@ -1408,8 +1408,8 @@ section.about.top .professional-image:hover {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   footer .contact-item {
