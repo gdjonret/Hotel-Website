@@ -428,23 +428,23 @@
       
       // Define available images for each room
       const availableRoomImages = [
-        '/images/room-1.jpg',
-        '/images/room2.jpg',
-        '/images/slider-img-1.jpeg',
-        '/images/slider-img-2.jpg',
-        '/images/slider-img-3.jpg',
-        '/images/slider-img-4.jpg',
-        '/images/slider-img-5.jpg',
-        '/images/slider-img-6.jpg'
+        '/images/rooms/Standard/room2.jpg',
+        '/images/rooms/Standard/room1.jpg',
+        '/images/rooms/Standard/room3.jpg',
+        '/images/rooms/Standard/room4.jpg',
+        '/images/rooms/Deluxe/room.jpg',
+        '/images/rooms/Deluxe/room1.jpg',
+        '/images/rooms/Deluxe/room2.jpg',
+        '/images/rooms/Deluxe/room3.jpg'
       ];
       
       const defaultModalImages = [
-        '/images/room-1.jpg',
-        '/images/room2.jpg',
-        '/images/slider-img-1.jpeg',
-        '/images/slider-img-2.jpg',
-        '/images/slider-img-3.jpg',
-        '/images/slider-img-4.jpg'
+        '/images/rooms/Standard/room2.jpg',
+        '/images/rooms/Standard/room1.jpg',
+        '/images/rooms/Standard/room3.jpg',
+        '/images/rooms/Standard/room4.jpg',
+        '/images/rooms/Deluxe/room.jpg',
+        '/images/rooms/Deluxe/room1.jpg'
       ];
 
       const deluxeModalImages = [

@@ -217,14 +217,14 @@
                         const imageNum = (index % 2) + 1;
                         const displayImage = roomType.featuredImage || 
                                            (roomImages.length > 0 ? roomImages[0] : null) || 
-                                           `/images/room${imageNum === 1 ? '-1' : '2'}.jpg`;
+                                           (imageNum === 1 ? '/images/rooms/Standard/room2.jpg' : '/images/rooms/Deluxe/room.jpg');
                         
                         // Count of images for badge
                         const imageCount = roomImages.length || Math.floor(Math.random() * 10) + 15;
                     %>
                         <div class="room-container">
                             <div class="room-image room-card-carousel" data-room-id="<%= roomType.id %>" data-images='<%= JSON.stringify(roomImages) %>'>
-                                <img src="<%= displayImage %>" alt="<%= roomType.name %>" class="img-fluid rounded" loading="lazy" onerror="this.onerror=null; this.src='/images/room-1.jpg';">
+                                <img src="<%= displayImage %>" alt="<%= roomType.name %>" class="img-fluid rounded" loading="lazy" onerror="this.onerror=null; this.src='/images/rooms/Standard/room2.jpg';">
                                 <div class="price-overlay"><%= Number(roomType.baseRate).toLocaleString() %> FCFA/night</div>
                                 <div class="photo-count-badge">
                                     <i class="fas fa-camera"></i> <%= imageCount %>
