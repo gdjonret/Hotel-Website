@@ -3,6 +3,7 @@
 <head>
   <%- include("../partials/head") %>
   <link rel="stylesheet" href="/css/contact.css">
+  <script src="https://www.google.com/recaptcha/api.js?render=<%= process.env.RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI' %>"></script>
   <title data-i18n="contact.pageTitle">Contact - Hôtel Le Process</title>
 </head>
 <body>
@@ -69,6 +70,10 @@
             </div>
 
             <form action="/contact" method="POST" class="contact-form" id="contactForm">
+              <!-- Honeypot field for bot detection (hidden from users) -->
+              <input type="text" name="website" id="website" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+              <input type="hidden" name="form_timestamp" id="form_timestamp">
               <div class="form-row">
                 <div class="form-group">
                   <label for="name" data-i18n="contact.form.nameLabel">Votre nom</label>
@@ -136,6 +141,13 @@
   <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
   <script src="/js/i18n-client.js"></script>
   <script>
+    // Record form load time for spam detection
+    const formLoadTime = Date.now();
+    document.getElementById('form_timestamp').value = formLoadTime;
+    
+    // Initialize reCAPTCHA v3
+    const recaptchaSiteKey = '<%= process.env.RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" %>';
+    
     (function () {
       const alertEl = document.querySelector('.contact-alert .alert');
       if (!alertEl) return;
@@ -148,8 +160,28 @@
       }, 5000);
     })();
 
-    // Contact form validation
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Contact form validation with spam protection
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Check honeypot field
+      const honeypot = document.getElementById('website').value;
+      if (honeypot) {
+        // Bot detected - silently fail
+        console.log('Spam detected: honeypot filled');
+        showError('Une erreur est survenue. Veuillez réessayer.');
+        return false;
+      }
+      
+      // Check form submission speed (bots submit too fast)
+      const submissionTime = Date.now();
+      const timeDiff = (submissionTime - formLoadTime) / 1000; // in seconds
+      if (timeDiff < 3) {
+        // Submitted too fast (less than 3 seconds)
+        console.log('Spam detected: too fast submission');
+        showError('Veuillez prendre le temps de remplir le formulaire.');
+        return false;
+      }
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const subject = document.getElementById('subject').value;
@@ -200,16 +232,51 @@
       
       if (message.length > 5000) {
         showError('Le message ne doit pas dépasser 5000 caractères');
-        e.preventDefault();
         return false;
       }
       
-      return true;
+      // Check for suspicious patterns in message
+      if (containsSpamPatterns(message)) {
+        showError('Votre message contient du contenu suspect. Veuillez le modifier.');
+        return false;
+      }
+      
+      // Get reCAPTCHA token
+      try {
+        const token = await grecaptcha.execute(recaptchaSiteKey, { action: 'contact' });
+        document.getElementById('recaptcha_token').value = token;
+        
+        // Submit the form
+        this.submit();
+      } catch (error) {
+        console.error('reCAPTCHA error:', error);
+        showError('Erreur de vérification. Veuillez réessayer.');
+        return false;
+      }
     });
     
     function isValidEmail(email) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
+    }
+    
+    function containsSpamPatterns(text) {
+      const spamPatterns = [
+        /\b(viagra|cialis|casino|poker|lottery|winner|prize|claim|click here|buy now)\b/i,
+        /https?:\/\/[^\s]+\.[a-z]{2,}/gi, // Multiple URLs
+        /(.)\1{10,}/, // Repeated characters
+        /[A-Z]{20,}/, // Too many uppercase letters
+        /\$\d+|\d+\$|USD|EUR|GBP/i // Money spam
+      ];
+      
+      // Check for multiple URLs (more than 2 is suspicious)
+      const urlMatches = text.match(/https?:\/\//gi);
+      if (urlMatches && urlMatches.length > 2) {
+        return true;
+      }
+      
+      // Check other spam patterns
+      return spamPatterns.some(pattern => pattern.test(text));
     }
     
     function showError(message) {

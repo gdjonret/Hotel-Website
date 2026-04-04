@@ -130,17 +130,77 @@ router.get("/contact", (req, res) => {
 
 // Contact form submission handler
 router.post("/contact", async (req, res) => {
-    const { name, email, subject, message } = req.body;
+    const { name, email, subject, message, website, recaptcha_token, form_timestamp } = req.body;
+    
+    // Server-side spam protection checks
+    
+    // 1. Honeypot check - if filled, it's a bot
+    if (website && website.trim() !== '') {
+        console.log('Spam detected: honeypot field filled');
+        return res.render("pages/contact", { 
+            submitted: false, 
+            error: 'Une erreur est survenue lors de l\'envoi de votre message.' 
+        });
+    }
+    
+    // 2. Check form submission speed (must take at least 3 seconds)
+    if (form_timestamp) {
+        const loadTime = parseInt(form_timestamp);
+        const submitTime = Date.now();
+        const timeDiff = (submitTime - loadTime) / 1000; // in seconds
+        
+        if (timeDiff < 3) {
+            console.log('Spam detected: form submitted too fast');
+            return res.render("pages/contact", { 
+                submitted: false, 
+                error: 'Veuillez prendre le temps de remplir le formulaire correctement.' 
+            });
+        }
+        
+        // Also reject if timestamp is too old (more than 1 hour)
+        if (timeDiff > 3600) {
+            console.log('Form expired: timestamp too old');
+            return res.render("pages/contact", { 
+                submitted: false, 
+                error: 'Le formulaire a expiré. Veuillez rafraîchir la page et réessayer.' 
+            });
+        }
+    }
+    
+    // 3. Basic validation
+    if (!name || !email || !subject || !message) {
+        return res.render("pages/contact", { 
+            submitted: false, 
+            error: 'Tous les champs sont requis.' 
+        });
+    }
+    
+    // 4. Check for spam patterns in message
+    const spamPatterns = [
+        /\b(viagra|cialis|casino|poker|lottery|winner|prize)\b/i,
+        /(.)\1{10,}/, // Repeated characters
+        /[A-Z]{30,}/, // Too many uppercase
+    ];
+    
+    const urlMatches = message.match(/https?:\/\//gi);
+    if ((urlMatches && urlMatches.length > 2) || spamPatterns.some(p => p.test(message))) {
+        console.log('Spam detected: suspicious content patterns');
+        return res.render("pages/contact", { 
+            submitted: false, 
+            error: 'Votre message contient du contenu suspect.' 
+        });
+    }
     
     try {
         const backendUrl = process.env.BACKEND_URL || 'http://localhost:8080';
         
-        // Send contact message to backend
+        // Send contact message to backend with reCAPTCHA token
         await axios.post(`${backendUrl}/api/public/contact`, {
             name,
             email,
             subject,
-            message
+            message,
+            recaptcha_token
         });
         
         console.log('Contact form submission sent to backend:', { name, email, subject });
