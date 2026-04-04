@@ -130,7 +130,7 @@ router.get("/contact", (req, res) => {
 
 // Contact form submission handler
 router.post("/contact", async (req, res) => {
-    const { name, email, subject, message, website, recaptcha_token, form_timestamp } = req.body;
+    const { name, email, subject, message, website, recaptchaToken, form_timestamp } = req.body;
     
     // Server-side spam protection checks
     
@@ -200,7 +200,7 @@ router.post("/contact", async (req, res) => {
             email,
             subject,
             message,
-            recaptcha_token
+            recaptchaToken
         });
         
         console.log('Contact form submission sent to backend:', { name, email, subject });
