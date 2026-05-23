@@ -1,23 +1,26 @@
-/* Room Image Styles - Header */
+/* Hero Image / Reservation Banner */
 .room-image {
     width: 100%;
-    height: 400px;
+    height: 360px;
     overflow: hidden;
     position: relative;
-    margin-bottom: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: none;
+    background: #f4efe7;
 }
 
 .room-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    object-position: center center;
+    display: block;
 }
 
+/* Remove hover zoom for hero image */
 .room-image:hover img {
-    transform: scale(1.05);
+    transform: none;
 }
 
 /* Elegant Neutral Room Details */
@@ -485,8 +488,13 @@ select.form-control option:hover {
 @media (max-width: 768px) {
     /* Header room image - smaller on mobile */
     .room-image {
-        height: 250px;
-        margin-bottom: 20px;
+        height: 260px;
+        border-radius: 0 0 10px 10px;
+        margin-bottom: 25px;
+    }
+    
+    .room-image img {
+        object-position: center center;
     }
     
     /* Booking form container: more compact */
